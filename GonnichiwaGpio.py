@@ -53,7 +53,7 @@ class GonnichiwaGpio:
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # PWM 으로 천천히 켜짐.
                     #self.__ledOnSmoothly()
-                    values = self.dutyValues
+                    values = self.__setDutyRatioArray()
                     if values is None:
                         pass
                     else:
@@ -64,7 +64,8 @@ class GonnichiwaGpio:
                 elif key_in == SwitchInput.SWITCH_CLOSE:
                     # PWM 으로 천천히 꺼짐.
                     #self.__ledOffSmoothly()
-                    values = self.dutyValues.reverse()
+                    values = self.__setDutyRatioArray()
+                    values = values.reverse()
                     print(values)
                     if values is None:
                         pass
