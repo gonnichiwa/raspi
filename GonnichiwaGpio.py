@@ -40,18 +40,17 @@ class GonnichiwaGpio:
         return dutyValues
 
     def __changeDutyCycle(self, dutyArr):
+        print(dutyArr)
         for val in dutyArr:
             self.pwm.ChangeDutyCycle(val)
             time.sleep(0.001)
     
     def __ledOnSmoothly(self):
         self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
-        print(self.dutyValues)
         self.__changeDutyCycle(self.dutyValues)
 
     def __ledOffSmoothly(self):
         self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0).reverse()
-        print(self.dutyValues)
         self.__changeDutyCycle(self.dutyValues)
 
     def start(self):
