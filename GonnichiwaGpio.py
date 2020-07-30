@@ -26,6 +26,11 @@ class GonnichiwaGpio:
         self.pwm.stop()  # pwm stop
         GPIO.cleanup()   # gpio stop
 
+    def __changeDutyCycle(self, dutyArr=[0.1, 0.5]):
+        for val in dutyArr:
+            self.pwm.ChangeDutyCycle(val)
+            time.sleep(0.01)
+
     def __setDutyRatioArray(self, start=0.1, interval=0.1, end=100.0): # ratio param의 default가 0.1
         print('_setDutyRatioArray', str(start), str(interval), str(end))
         # 듀티 ratio 목록 작성 (0.1단위로 ratio 100.0까지 배열 삽입)
@@ -39,12 +44,6 @@ class GonnichiwaGpio:
 
         return dutyValues
 
-    def __changeDutyCycle(self, dutyArr):
-        print(dutyArr)
-        for val in dutyArr:
-            self.pwm.ChangeDutyCycle(val)
-            time.sleep(0.001)
-    
     def __ledOnSmoothly(self):
         self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
         self.__changeDutyCycle(self.dutyValues)
@@ -62,7 +61,7 @@ class GonnichiwaGpio:
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # PWM 으로 천천히 켜짐.
                     self.__ledOnSmoothly()
-                else:
+                elif key_in == SwitchInput.SWITCH_CLOSE:
                     # PWM 으로 천천히 꺼짐.
                     self.__ledOffSmoothly()
                 
