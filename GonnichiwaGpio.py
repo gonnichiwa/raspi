@@ -10,6 +10,9 @@ class GonnichiwaGpio:
     def getNum(self):
         return self.num
 
+    def __gpioCleanup(self): # private method (객체 외부에서 사용할 수 없다.)
+        GPIO.cleanup()
+
     def start(self):
         GPIO.setmode(GPIO.BOARD)
     
@@ -27,9 +30,11 @@ class GonnichiwaGpio:
                 key_in = GPIO.input(GPIOPIN_7)
                 
                 if key_in == SwitchInput.SWITCH_OPEN:
+                    # TODO: PWM 으로 천천히 켜짐.
                     print('gpio.high')
                     GPIO.output(LED, GPIO.HIGH)
                 else:
+                    # TODO: PWM 으로 천천히 꺼짐.
                     print('gpio.low')
                     GPIO.output(LED, GPIO.LOW)
                 
@@ -37,4 +42,5 @@ class GonnichiwaGpio:
             print('exception')
             pass
         
-        GPIO.cleanup()
+        # cleanup GPIO
+        self.__gpioCleanup()
