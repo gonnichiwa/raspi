@@ -28,7 +28,7 @@ class GonnichiwaGpio:
                 if key_in == SwitchInput.FALSE:
                     print('gpio.high')
                     GPIO.output(LED, GPIO.HIGH)
-                else:
+                else if key_in == SwitchInput.TRUE:
                     print('gpio.low')
                     GPIO.output(LED, GPIO.LOW)
                 
