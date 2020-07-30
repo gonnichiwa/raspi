@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import time
 from SwitchInput import SwitchInput
 
+import traceback
+
 class GonnichiwaGpio:
     def __init__(self, gpioPin_input=7, gpio_led=11, pwmHz=100): 
         # Constructor parameter
@@ -60,13 +62,12 @@ class GonnichiwaGpio:
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # TODO: PWM 으로 천천히 켜짐.
                     self.__ledOnSmoothly()
-                    #GPIO.output(LED, GPIO.HIGH)
                 else:
                     # TODO: PWM 으로 천천히 꺼짐.
                     self.__ledOffSmoothly()
-                    #GPIO.output(LED, GPIO.LOW)
                 
         except BaseException:
+            traceback.print_exc()
             print('exception')
             pass
         
