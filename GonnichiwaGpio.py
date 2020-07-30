@@ -1,12 +1,12 @@
+#-*-coding:UTF-8-*-
 import RPi.GPIO as GPIO
 from SwitchInput import SwitchInput
 
 class GonnichiwaGpio:
     def __init__(self): # 
-        self.num = 0    # 멤버 변수. 'self' 필수
+        self.num = 0    # 멤버 변?? 'self' ?�수
 
-    def getNum(self): # 시험용
-        num = self.num
+    def getNum(self): # ?�험??        num = self.num
         return num
 
     def start(self):
@@ -17,18 +17,18 @@ class GonnichiwaGpio:
         
         GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
         
-        # 7번 핀을 입력으로 설정.
+        # 7�??�???�력?�로 ?�정.
         GPIO.setup(GPIOPIN_7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
         try:
             while True:
-                # 스위치 상태 판별.
+                # ?�위�??�태 ?�별.
                 key_in = GPIO.input(GPIOPIN_7)
                 
-                if key_in == SwitchInput.FALSE:
+                if key_in == 0:
                     print('gpio.high')
                     GPIO.output(LED, GPIO.HIGH)
-                elif key_in == SwitchInput.TRUE:
+                else:
                     print('gpio.low')
                     GPIO.output(LED, GPIO.LOW)
                 
