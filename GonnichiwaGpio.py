@@ -39,10 +39,10 @@ class GonnichiwaGpio:
 
         return dutyValues
 
-    def __ledOnSmoothly(self):
+    #def __ledOnSmoothly(self):
         #self.__changeDutyCycle(self.dutyValues)
 
-    def __ledOffSmoothly(self):
+    #def __ledOffSmoothly(self):
         #self.__changeDutyCycle(self.dutyValues)
 
     def start(self):
