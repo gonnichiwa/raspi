@@ -33,8 +33,6 @@ class GonnichiwaGpio:
         while value <= end:
             dutyValues.append(round(value,1)) # 0.1 단위로 소수점 1째자리까지 추가.
             value = value + interval
-        
-        print(dutyValues)
 
         return dutyValues
 
@@ -56,7 +54,7 @@ class GonnichiwaGpio:
                     # PWM 으로 천천히 켜짐.
                     #self.__ledOnSmoothly()
                     values = self.dutyValues
-                    for val in values:
+                    for val in values is not None:
                         self.pwm.ChangeDutyCycle(val)
                         time.sleep(0.01)
                     
@@ -64,7 +62,7 @@ class GonnichiwaGpio:
                     # PWM 으로 천천히 꺼짐.
                     #self.__ledOffSmoothly()
                     values = self.dutyValues.reverse()
-                    for val in values:
+                    for val in values is not None:
                         self.pwm.ChangeDutyCycle(val)
                         time.sleep(0.01)
                 
