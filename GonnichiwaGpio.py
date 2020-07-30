@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from SwitchInput import SwitchInput
 
 class GonnichiwaGpio:
     def __init__(self): # 
@@ -11,20 +12,20 @@ class GonnichiwaGpio:
     def start(self):
         GPIO.setmode(GPIO.BOARD)
     
-        SW = 7
+        GPIOPIN_7 = 7
         LED = 11
         
         GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
         
         # 7번 핀을 입력으로 설정.
-        GPIO.setup(SW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(GPIOPIN_7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
         try:
             while True:
                 # 스위치 상태 판별.
-                key_in = GPIO.input(SW)
+                key_in = GPIO.input(GPIOPIN_7)
                 
-                if key_in == 0:
+                if key_in == SwitchInput.FALSE:
                     print('gpio.high')
                     GPIO.output(LED, GPIO.HIGH)
                 else:
