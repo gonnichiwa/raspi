@@ -36,12 +36,6 @@ class GonnichiwaGpio:
 
         return dutyValues
 
-    #def __ledOnSmoothly(self):
-        #self.__changeDutyCycle(self.dutyValues)
-
-    #def __ledOffSmoothly(self):
-        #self.__changeDutyCycle(self.dutyValues)
-
     def start(self):
         self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
 
@@ -52,8 +46,7 @@ class GonnichiwaGpio:
                 
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # PWM 으로 천천히 켜짐.
-                    #self.__ledOnSmoothly()
-                    values = self.__setDutyRatioArray()
+                    values = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 10.0, 15.0, 20.0, 40.0, 50.0, 70.0, 100.0]
                     if values is None:
                         pass
                     else:
@@ -63,10 +56,8 @@ class GonnichiwaGpio:
                     
                 elif key_in == SwitchInput.SWITCH_CLOSE:
                     # PWM 으로 천천히 꺼짐.
-                    #self.__ledOffSmoothly()
-                    values = self.__setDutyRatioArray()
+                    values = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 10.0, 15.0, 20.0, 40.0, 50.0, 70.0, 100.0]
                     values = values.reverse()
-                    print(values)
                     if values is None:
                         pass
                     else:
