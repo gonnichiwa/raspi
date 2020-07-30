@@ -54,17 +54,24 @@ class GonnichiwaGpio:
                     # PWM 으로 천천히 켜짐.
                     #self.__ledOnSmoothly()
                     values = self.dutyValues
-                    for val in values is not None:
-                        self.pwm.ChangeDutyCycle(val)
-                        time.sleep(0.01)
+                    if values is None:
+                        pass
+                    else:
+                        for val in values:
+                            self.pwm.ChangeDutyCycle(val)
+                            time.sleep(0.01)
                     
                 elif key_in == SwitchInput.SWITCH_CLOSE:
                     # PWM 으로 천천히 꺼짐.
                     #self.__ledOffSmoothly()
                     values = self.dutyValues.reverse()
-                    for val in values is not None:
-                        self.pwm.ChangeDutyCycle(val)
-                        time.sleep(0.01)
+                    print(values)
+                    if values is None:
+                        pass
+                    else:
+                        for val in values:
+                            self.pwm.ChangeDutyCycle(val)
+                            time.sleep(0.01)
                 
         except BaseException:
             traceback.print_exc()
