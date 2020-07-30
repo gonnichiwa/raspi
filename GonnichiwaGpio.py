@@ -45,14 +45,14 @@ class GonnichiwaGpio:
         return dutyValues
 
     def __ledOnSmoothly(self):
-        self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
         self.__changeDutyCycle(self.dutyValues)
 
     def __ledOffSmoothly(self):
-        self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0).reverse()
         self.__changeDutyCycle(self.dutyValues)
 
     def start(self):
+        self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
+        
         try:
             while True:
                 # 스위치 입력 판별.
