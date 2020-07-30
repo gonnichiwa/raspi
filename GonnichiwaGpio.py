@@ -10,6 +10,10 @@ class GonnichiwaGpio:
         self.GPIO_LED   = gpio_led
         # pwm SET
         GPIO.setmode(GPIO.BOARD)
+        # LED 연결 setup
+        GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
+        # 7번GPIO핀 초기설정.
+        GPIO.setup(GPIOPIN_7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         self.pwm        = GPIO.PWM(self.GPIO_LED, pwmHz)
         self.pwm.start(0)
         # pwm dutyRatio Array
@@ -44,15 +48,11 @@ class GonnichiwaGpio:
 
 
     def start(self):
-        GPIO.setmode(GPIO.BOARD)
+        #GPIO.setmode(GPIO.BOARD)
     
-        GPIOPIN_7 = self.GPIO_INPUT
-        LED = self.GPIO_LED
+        #GPIOPIN_7 = self.GPIO_INPUT
+        #LED = self.GPIO_LED
         
-        # LED 연결 setup
-        GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
-        # 7번GPIO핀 초기설정.
-        GPIO.setup(GPIOPIN_7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
         try:
             while True:
