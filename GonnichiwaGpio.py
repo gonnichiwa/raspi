@@ -45,8 +45,6 @@ class GonnichiwaGpio:
         dutyValues = self.__setDutyRatioArray(ratio=0.1).reverse()
         self.__changeDutyCycle(dutyValues)
 
-
-
     def start(self):
         #GPIO.setmode(GPIO.BOARD)
     
@@ -57,7 +55,7 @@ class GonnichiwaGpio:
         try:
             while True:
                 # 스위치 입력 판별.
-                key_in = GPIO.input(GPIOPIN_7)
+                key_in = GPIO.input(self.GPIO_INPUT)
                 
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # TODO: PWM 으로 천천히 켜짐.
