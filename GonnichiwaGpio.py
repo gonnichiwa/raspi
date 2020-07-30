@@ -10,6 +10,7 @@ class GonnichiwaGpio:
         self.GPIO_LED   = gpio_led
         # pwm SET
         self.pwm        = GPIO.PWM(self.GPIO_LED, pwmHz)
+        self.pwm.setmode(GPIO.BOARD)
         self.pwm.start(0)
         # pwm dutyRatio Array
         self.dutyValues = []
