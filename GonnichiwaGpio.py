@@ -34,7 +34,9 @@ class GonnichiwaGpio:
         while value <= end:
             dutyValues.append(round(value,1)) # 0.1 단위로 소수점 1째자리까지 추가.
             value = value + interval
-            
+        
+        print(dutyValues)
+
         return dutyValues
 
     def __changeDutyCycle(self, dutyArr):
@@ -43,14 +45,14 @@ class GonnichiwaGpio:
             time.sleep(0.001)
     
     def __ledOnSmoothly(self):
-        dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
-        print(dutyValues)
-        self.__changeDutyCycle(dutyValues)
+        self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
+        print(self.dutyValues)
+        self.__changeDutyCycle(self.dutyValues)
 
     def __ledOffSmoothly(self):
-        dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0).reverse()
-        print(dutyValues)
-        self.__changeDutyCycle(dutyValues)
+        self.dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0).reverse()
+        print(self.dutyValues)
+        self.__changeDutyCycle(self.dutyValues)
 
     def start(self):
         try:
