@@ -9,12 +9,12 @@ def main():
     
     GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
     
-    # 7╧Ь гию╩ ют╥бю╦╥н ╪Ёа╓.
+    # 7К╡┬ М∙─Л²└ Л·┘К═╔Л°╪К║° Л└╓Л═∙.
     GPIO.setup(SW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     
     try:
         while True:
-            # ╫╨ю╖д║ ╩Себ фг╨╟.
+            # Л┼╓Л°└Л╧≤ Л┐│М┐° М▄░КЁ└.
             key_in = GPIO.input(SW)
             
             if key_in == 0:
