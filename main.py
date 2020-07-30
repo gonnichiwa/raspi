@@ -2,7 +2,7 @@
 from GonnichiwaGpio import GonnichiwaGpio
 
 def main():
-    gonGpio = GonnichiwaGpio()
+    gonGpio = GonnichiwaGpio(gpioPin_input=7, gpio_led=11)
     gonGpio.start()
 
 
