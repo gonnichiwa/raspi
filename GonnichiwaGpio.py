@@ -10,7 +10,6 @@ class GonnichiwaGpio:
         # Constructor parameter
         self.GPIO_INPUT = gpioPin_input # 생성자 파라미터
         self.GPIO_LED   = gpio_led
-
         # pwm SET
         GPIO.setmode(GPIO.BOARD)
         # LED 연결 setup
@@ -56,14 +55,16 @@ class GonnichiwaGpio:
                 if key_in == SwitchInput.SWITCH_OPEN:
                     # PWM 으로 천천히 켜짐.
                     #self.__ledOnSmoothly()
-                    for val in self.dutyValues:
+                    values = self.dutyValues
+                    for val in values:
                         self.pwm.ChangeDutyCycle(val)
                         time.sleep(0.01)
                     
                 elif key_in == SwitchInput.SWITCH_CLOSE:
                     # PWM 으로 천천히 꺼짐.
                     #self.__ledOffSmoothly()
-                    for val in self.dutyValues.reverse():
+                    values = self.dutyValues.reverse()
+                    for val in values:
                         self.pwm.ChangeDutyCycle(val)
                         time.sleep(0.01)
                 
