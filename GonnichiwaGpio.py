@@ -1,10 +1,10 @@
 import RPi.GPIO as GPIO
 
 class GonnichiwaGpio:
-    def __init__(self):
-        self.num = 0
+    def __init__(self): # 
+        self.num = 0    # 멤버 변수. 'self' 필수
 
-    def getNum(self):
+    def getNum(self): # 시험용
         num = self.num
         return num
 
