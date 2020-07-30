@@ -9,8 +9,8 @@ class GonnichiwaGpio:
         self.GPIO_INPUT = gpioPin_input # 생성자 파라미터
         self.GPIO_LED   = gpio_led
         # pwm SET
-        self.pwm        = GPIO.PWM(self.GPIO_LED, pwmHz)
         self.pwm.setmode(GPIO.BOARD)
+        self.pwm        = GPIO.PWM(self.GPIO_LED, pwmHz)
         self.pwm.start(0)
         # pwm dutyRatio Array
         self.dutyValues = []
