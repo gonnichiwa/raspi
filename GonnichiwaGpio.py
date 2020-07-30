@@ -10,6 +10,7 @@ class GonnichiwaGpio:
         # Constructor parameter
         self.GPIO_INPUT = gpioPin_input # 생성자 파라미터
         self.GPIO_LED   = gpio_led
+
         # pwm SET
         GPIO.setmode(GPIO.BOARD)
         # LED 연결 setup
@@ -25,28 +26,29 @@ class GonnichiwaGpio:
         self.pwm.stop()  # pwm stop
         GPIO.cleanup()   # gpio stop
 
-    def __setDutyRatioArray(self, ratio=0.1): # ratio param의 default가 0.1
+    def __setDutyRatioArray(self, start=0.1, interval=0.1, end=100.0): # ratio param의 default가 0.1
+        print('_setDutyRatioArray', str(start), str(interval), str(end))
         # 듀티 ratio 목록 작성 (0.1단위로 ratio 100.0까지 배열 삽입)
         dutyValues = []
-        value = ratio
-        while value <= 100.0:
+        value = start
+        while value <= end:
             dutyValues.append(round(value,1)) # 0.1 단위로 소수점 1째자리까지 추가.
-            value = value + 0.1
+            value = value + interval
             
         return dutyValues
 
-    def __changeDutyCycle(self, dutyArr=[]):
+    def __changeDutyCycle(self, dutyArr):
         for val in dutyArr:
             self.pwm.ChangeDutyCycle(val)
             time.sleep(0.001)
     
     def __ledOnSmoothly(self):
-        dutyValues = self.__setDutyRatioArray(ratio=0.1)
+        dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0)
         print(dutyValues)
         self.__changeDutyCycle(dutyValues)
 
     def __ledOffSmoothly(self):
-        dutyValues = self.__setDutyRatioArray(ratio=0.1).reverse()
+        dutyValues = self.__setDutyRatioArray(start=0.1, interval=0.1, end=100.0).reverse()
         print(dutyValues)
         self.__changeDutyCycle(dutyValues)
 
