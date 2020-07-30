@@ -4,16 +4,16 @@ import time
 from SwitchInput import SwitchInput
 
 class GonnichiwaGpio:
-    def __init__(self, gpioPin_input, gpio_led, pwmHz=100): 
+    def __init__(self, gpioPin_input=7, gpio_led=11, pwmHz=100): 
         # Constructor parameter
         self.GPIO_INPUT = gpioPin_input # 생성자 파라미터
         self.GPIO_LED   = gpio_led
         # pwm SET
         GPIO.setmode(GPIO.BOARD)
         # LED 연결 setup
-        GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(self.GPIO_LED, GPIO.OUT, initial=GPIO.LOW)
         # 7번GPIO핀 초기설정.
-        GPIO.setup(GPIOPIN_7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.GPIO_INPUT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         self.pwm        = GPIO.PWM(self.GPIO_LED, pwmHz)
         self.pwm.start(0)
         # pwm dutyRatio Array
